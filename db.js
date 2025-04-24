@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-mongoose.connect("mongodb+srv://pm:piyush@mongodb-practice.es9tj.mongodb.net/").then(()=>{console.log(`Database Connected...`)}).catch((err)=>{console.error(`Database Error Occured!`,err)})
+mongoose.connect().then(()=>{console.log(`Database Connected...`)}).catch((err)=>{console.error(`Database Error Occured!`,err)})
 
 const filesSchema = new mongoose.Schema({
 	originalUrl: {type:String, required: true},
