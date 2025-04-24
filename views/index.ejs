@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>URL Concealer</title>
+    <link rel='stylesheet' href="./stylesheets/style.css">
+  </head>
+  <body>
+        <h1>URL Concealer</h1>
+        <form method="POST" action="/createLink/">
+		<input type="text" name="createdBy" placeholder="Enter your username or email...">
+		<input type="text" name="originalLink" placeholder="Enter the URL to hide">
+		<label sytle="display:flex;gap:1em">
+			<p>Want to lock the URL?</p>
+			<input type="checkbox" name="isLocked">
+		</label>
+		<button type="Submit">Submit</button>
+	</form>
+  </body>
+</html>
