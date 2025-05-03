@@ -3,6 +3,7 @@ import {Router} from "express"
 import mongoose from "mongoose"
 import linkModel from "./db.js"
 import handler from "./handlers.js"
+import fs from "node:fs"
 
 // setup Router in a variable
 const router = Router()
@@ -14,23 +15,22 @@ router.get("/",(req,res)=>{
 	res.render("index")
 })
 
-router.post("/createLink",(req,res)=>{
+router.post("/createLink", async (req,res)=>{
 	const originalURL = req.body.originalLink;
 	const createdBy = req.body.createdBy;
-	const isLocked = false;
+	let isLocked = false;
 	if(req.body.isLocked){
 		isLocked = true;
 	}
-	const dataToStore = {
+	let dataToStore = {
 		originalUrl: originalURL,
 		mappedUrl: `https://pmurl/${handler.mapUrl()}`,
 		isLocked: isLocked,
 		createdBy: createdBy,
 	}
-	if(isLocked === true){
-		dataToStore.passkey = "PIYUSH"
-	}
-	res.send(dataToStore)
+	const storedData = await new linkModel(dataToStore).save()
+	res.send(storedData)
+
 })
 
 // exported router for index.js
